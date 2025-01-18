@@ -113,6 +113,9 @@ importers:
       remark-toc:
         specifier: ^9.0.0
         version: 9.0.0
+      shart:
+        specifier: ^0.0.4
+        version: 0.0.4
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
@@ -1711,6 +1714,9 @@ packages:
   eventemitter3@5.0.1:
     resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
 
+  execSync@1.0.2:
+    resolution: {integrity: sha512-ul1uCl3e2DLlTl8z8R7OFb9PDXI08YkXbgknWZQCrpQjZh7cpntAzDI6oEqetaWpx+RdySFcxHVyG98CFg2lTQ==}
+
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
@@ -1832,6 +1838,11 @@ packages:
   globals@15.14.0:
     resolution: {integrity: sha512-OkToC372DtlQeje9/zHIo5CT8lRP/FUgEOKBEhU4e0abL7J7CD24fD9ohiLN5hagG/kWCYj4K5oaxxtj2Z0Dig==}
     engines: {node: '>=18'}
+
+  graceful-fs@1.2.3:
+    resolution: {integrity: sha512-iiTUZ5vZ+2ZV+h71XAgwCSu6+NAizhFU3Yw8aC/hH5SQ3SnISqEqAek40imAFGtDcwJKNhXvSY+hzIolnLwcdQ==}
+    engines: {node: '>=0.4.0'}
+    deprecated: please upgrade to graceful-fs 4 for compatibility with current and future versions of Node.js
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
@@ -2854,6 +2865,10 @@ packages:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
 
+  rimraf@2.1.4:
+    resolution: {integrity: sha512-tzwmX16YQhcFu0T/m0gHBcFKx6yQAg77Z6WWaQSJsUekXYa6yaAmHhrDdmFicgauX/er7GsdN+vRao3mBhA4kQ==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
+
   rollup@4.30.1:
     resolution: {integrity: sha512-mlJ4glW020fPuLi7DkM/lN97mYEZGWeqBnrljzN0gs7GLctqX3lNWxKQ7Gl712UAX+6fog/L3jh4gb7R6aVi3w==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -2889,6 +2904,12 @@ packages:
   sharp@0.33.5:
     resolution: {integrity: sha512-haPVm1EkS9pgvHrQ/F3Xy+hgcuMV0Wm9vfIBSiwZ05k+xgb0PkBQpGsAA/oWdDobNaZTH5ppvHtzCFbnSEwHVw==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+
+  shart@0.0.4:
+    resolution: {integrity: sha512-J6wJB4wAHbblxDOIyeaTGQKyotAMAF9zdz3vAkDI8/ZrbmV/Eg/Gdqz10QjRAXaxTK02A/xQRXuLmd8ECGltuQ==}
+    engines: {node: '>= 0.10.24'}
+    deprecated: because this is a ridiculous package
+    hasBin: true
 
   shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
@@ -3007,6 +3028,10 @@ packages:
   tar@6.2.1:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
+
+  temp@0.5.1:
+    resolution: {integrity: sha512-Gwc1QWGkf3f3d0y8wNyC9uvVqAsmVdUMPzdiLJDNVAHhlxZmSWlvVZAk1LmZcBuYcmhvJ0oHDVHksghU3VI/0w==}
+    engines: {'0': node >=0.8.0}
 
   thenify-all@1.6.0:
     resolution: {integrity: sha512-RNxQH/qI8/t3thXJDwcstUO4zeqo64+Uy/+sNVRBx4Xn2OX+OZ9oP+iJnNFqplFra2ZUVeKCSa2oVWi3T4uVmA==}
@@ -5227,6 +5252,10 @@ snapshots:
 
   eventemitter3@5.0.1: {}
 
+  execSync@1.0.2:
+    dependencies:
+      temp: 0.5.1
+
   extend@3.0.2: {}
 
   extract-zip@2.0.1:
@@ -5339,6 +5368,9 @@ snapshots:
   globals@11.12.0: {}
 
   globals@15.14.0: {}
+
+  graceful-fs@1.2.3:
+    optional: true
 
   graceful-fs@4.2.11: {}
 
@@ -6806,6 +6838,10 @@ snapshots:
 
   reusify@1.0.4: {}
 
+  rimraf@2.1.4:
+    optionalDependencies:
+      graceful-fs: 1.2.3
+
   rollup@4.30.1:
     dependencies:
       '@types/estree': 1.0.6
@@ -6877,6 +6913,10 @@ snapshots:
       '@img/sharp-win32-ia32': 0.33.5
       '@img/sharp-win32-x64': 0.33.5
     optional: true
+
+  shart@0.0.4:
+    dependencies:
+      execSync: 1.0.2
 
   shebang-command@2.0.0:
     dependencies:
@@ -7037,6 +7077,10 @@ snapshots:
       minizlib: 2.1.2
       mkdirp: 1.0.4
       yallist: 4.0.0
+
+  temp@0.5.1:
+    dependencies:
+      rimraf: 2.1.4
 
   thenify-all@1.6.0:
     dependencies:
