@@ -15,9 +15,7 @@ import {
 import { getCollection } from 'astro:content'
 
 // Fetch data server-side
-const projects = await getCollection("projects", ({ data }) => {
-  return import.meta.env.PROD ? data.draft !== true : true;
-});
+const projects = await getCollection("projects");
 ---
 
 <Layout title="About" description={SITE.DESCRIPTION}>
