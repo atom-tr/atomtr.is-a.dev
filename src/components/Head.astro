@@ -90,13 +90,15 @@ const { title, description, image = '/static/twitter-card.png' } = Astro.props
   }
 
   setDarkMode(document)
-
-  document.addEventListener('astro:before-swap', (ev) => {
-    // Pass the incoming document to set the theme on it
+  
+  function init(ev) {
     setDarkMode(ev.newDocument)
     animate();
     setGiscusTheme();
-  })
+  }
+
+  document.addEventListener("DOMContentLoaded", (ev) => init(ev));
+  document.addEventListener('astro:before-swap', (ev) => init(ev));
 
   const setGiscusTheme = () => {
     const giscus = document.querySelector(".giscus-frame");
@@ -105,7 +107,6 @@ const { title, description, image = '/static/twitter-card.png' } = Astro.props
 
     if (giscus) {
       const url = new URL(giscus.src);
-      // Change "dark" and "light" to other Giscus themes
       url.searchParams.set("theme", isDark ? "dark" : "light");
       giscus.src = url.toString();
     }

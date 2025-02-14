@@ -2,19 +2,22 @@
 import { GISCUS } from '@/consts'
 ---
 <div class="giscus"></div>
-<script  is:inline src="https://giscus.app/client.js"
+<script 
+    is:inline 
+    data-astro-rerun
+    src="https://giscus.app/client.js"
     data-repo={ GISCUS.repo }
-    data-repo-id={ GISCUS.repo_id }
+    data-repo-id={ GISCUS.repoId }
     data-category={ GISCUS.category }
-    data-category-id={ GISCUS.category_id }
-    data-mapping="title"
+    data-category-id={ GISCUS.categoryId }
+    data-mapping={ GISCUS.mapping }
     data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="transparent_dark"
-    data-lang="vi"
-    data-loading="lazy"
+    data-reactions-enabled={ GISCUS.reactionsEnabled }
+    data-emit-metadata={ GISCUS.emitMetadata }
+    data-input-position={ GISCUS.inputPosition }
+    data-theme={ GISCUS.theme }
+    data-lang={ GISCUS.lang }
+    data-loading={ GISCUS.loading }
     crossorigin="anonymous"
     async>
 </script>

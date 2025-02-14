@@ -35,6 +35,13 @@ export function ModeToggle() {
     requestAnimationFrame(() => {
       document.documentElement.classList.remove('disable-transitions')
     })
+
+    const giscus = document.querySelector(".giscus-frame")
+    if (giscus) {
+      const url = new URL(giscus.src);
+      url.searchParams.set("theme", isDark ? "dark" : "light")
+      giscus.src = url.toString()
+    }
   }, [theme])
 
   return (

@@ -1,3 +1,4 @@
+import type { GiscusProps } from "@giscus/react";
 
 export type Site = {
   TITLE: string
@@ -45,9 +46,17 @@ export const SOCIAL_LINKS: Link[] = [
   { href: '/rss.xml', label: 'RSS', icon: 'lucide:rss' }
 ]
 
-export const GISCUS = {
+
+export const GISCUS: GiscusProps = {
   repo: "atom-tr/astro-erudite",
-  repo_id: "R_kgDONr4i-w",
+  repoId: "R_kgDONr4i-w",
   category: "Show and tell",
-  category_id: "DIC_kwDONr4i-84CmVfR",
-}
+  categoryId: "DIC_kwDONr4i-84CmVfR",
+  mapping: "title",
+  reactionsEnabled: "1",
+  emitMetadata: "0",
+  inputPosition: "top",
+  theme: "preferred_color_scheme",
+  lang: "vi",
+  loading: "lazy",
+};
