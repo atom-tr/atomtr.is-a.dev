@@ -24,11 +24,11 @@ const {
 } = author.data
 
 const socialLinks: SocialLink[] = [
-  website && { href: website, label: 'Website' },
-  github && { href: github, label: 'GitHub' },
-  twitter && { href: twitter, label: 'Twitter' },
-  linkedin && { href: linkedin, label: 'LinkedIn' },
-  mail && { href: mail, label: 'Email' },
+  website && { href: website, label: 'Website', icon: 'mdi:web' },
+  github && { href: github, label: 'GitHub', icon: 'lucide:github' },
+  twitter && { href: twitter, label: 'Twitter', icon: 'lucide:twitter' },
+  linkedin && { href: linkedin, label: 'LinkedIn', icon: 'lucide:linkedin' },
+  mail && { href: mail, label: 'Email', icon: 'lucide:mail' },
 ].filter(Boolean) as SocialLink[]
 ---
 

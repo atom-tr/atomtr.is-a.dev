@@ -30,10 +30,24 @@ export const NAV_LINKS: Link[] = [
   { href: '/tags', label: 'tags' },
 ]
 
+export const ABOUT = {
+  name: 'atom-tr',
+  real_name: 'Thai Tran',
+  avatar: 'https://avatars.githubusercontent.com/u/65351520?v=4',
+  pronouns: 'he/him'
+}
+
 export const SOCIAL_LINKS: Link[] = [
   { href: 'thai.tr@hotmail.com', label: 'Email', icon: 'lucide:mail' },
   { href: 'https://github.com/atom-tr', label: 'Github', icon: 'lucide:github' },
   { href: 'https://instagram.com/rt.mota', label: 'Instagram', icon: 'lucide:instagram' },
-  { href: 'https://dev.to/atomtr', label: 'Dev.to' },
+  { href: 'https://dev.to/atomtr', label: 'Dev.to', icon: 'simple-icons:devdotto' },
   { href: '/rss.xml', label: 'RSS', icon: 'lucide:rss' }
 ]
+
+export const GISCUS = {
+  repo: "atom-tr/astro-erudite",
+  repo_id: "R_kgDONr4i-w",
+  category: "Show and tell",
+  category_id: "DIC_kwDONr4i-84CmVfR",
+}
