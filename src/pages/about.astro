@@ -3,19 +3,14 @@ import Breadcrumbs from '@/components/Breadcrumbs.astro'
 import Container from '@/components/Container.astro'
 import ProjectCard from '@/components/ProjectCard.astro'
 import Skill from '@/components/Skill.astro'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { SITE } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
 // import { Separator } from '@/components/ui/separator'
 import { getCollection } from 'astro:content'
 
 // Fetch data server-side
-const projects = await getCollection("projects");
+const projects = await getCollection('projects')
 ---
 
 <Layout title="About" description={SITE.DESCRIPTION}>
@@ -25,24 +20,28 @@ const projects = await getCollection("projects");
     <section>
       <div class="min-w-full">
         <h1 class="mb-4 text-3xl font-bold">Some more about me</h1>
-        <p class="prose prose-neutral animate mb-8 dark:prose-invert">
+        <p class="animate prose prose-neutral mb-8 dark:prose-invert">
           {SITE.TITLE}, a developer with a passion for automating everything..
         </p>
 
         <h2 class="mb-4 text-2xl font-semibold">Recent Projects</h2>
-        <div class="grid animate gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="animate grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => <ProjectCard project={project} />)}
         </div>
-        
-        <h2 class="mt-5 mb-4 text-2xl font-semibold">Roles</h2>
-        <div class="grid animate gap-6 sm:grid-cols-1 lg:grid-cols-2">
+
+        <h2 class="mb-4 mt-5 text-2xl font-semibold">Roles</h2>
+        <div class="animate grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle className="text-3xl">Developer</CardTitle>
             </CardHeader>
             <CardContent>
               <p class="mb-2 text-sm text-muted-foreground">
-                As an integral part of the System Administrator team, I worked as a Python Developer for over 4 years, gaining a deep understanding of core Python development. I have a thorough grasp of Object-Oriented Programming and Design Patterns, with a strong focus on scripting and developing web-based tools.
+                As an integral part of the System Administrator team, I worked
+                as a Python Developer for over 4 years, gaining a deep
+                understanding of core Python development. I have a thorough
+                grasp of Object-Oriented Programming and Design Patterns, with a
+                strong focus on scripting and developing web-based tools.
               </p>
             </CardContent>
           </Card>
@@ -52,18 +51,39 @@ const projects = await getCollection("projects");
             </CardHeader>
             <CardContent>
               <p class="mb-2 text-sm text-muted-foreground">
-                As a DevOps Engineer, I started with cultivating the DevOps culture when we moved from Monolith to Agile Implementation. Further automated the process end-to-end. Right from Building the code (CI) to deploying it to different enviornment (CD). Recently started creating Infrastructure with the help of code (IAC).
+                As a DevOps Engineer, I started with cultivating the DevOps
+                culture when we moved from Monolith to Agile Implementation.
+                Further automated the process end-to-end. Right from Building
+                the code (CI) to deploying it to different enviornment (CD).
+                Recently started creating Infrastructure with the help of code
+                (IAC).
               </p>
             </CardContent>
           </Card>
         </div>
-        <h2 class="mt-5 mb-5 text-2xl font-semibold">Skills</h2>
-        <div class="grid animate gap-5 sm:grid-cols-1 lg:grid-cols-2">
+        <h2 class="mb-5 mt-5 text-2xl font-semibold">Skills</h2>
+        <div class="animate grid gap-5 sm:grid-cols-1 lg:grid-cols-2">
           <div>
-            <p class="text-sm text-muted-foreground">Programing Languages</p> <Skill icon="simple-icons:python" name="Python" />  <Skill icon="simple-icons:mysql" name="MySQL" /> </div>
-          <div><p class="text-sm text-muted-foreground">Scripting Languages</p> <Skill icon="simple-icons:gnubash" name="Shell Scripting" />  <Skill icon="simple-icons:python" name="Python" />  <Skill icon="simple-icons:php" name="PHP" /></div>
-          <div><p class="text-sm text-muted-foreground">Tools</p> <Skill icon="simple-icons:git" name="Git" />  <Skill icon="simple-icons:github" name="Github" /> </div>
-          <div><p class="text-sm text-muted-foreground">Framework</p> <Skill icon="simple-icons:django" name="Django" />  <Skill name="Rest API" />  </div>
+            <p class="text-sm text-muted-foreground">Programing Languages</p>
+            <Skill icon="simple-icons:python" name="Python" />
+            <Skill icon="simple-icons:mysql" name="MySQL" />
+          </div>
+          <div>
+            <p class="text-sm text-muted-foreground">Scripting Languages</p>
+            <Skill icon="simple-icons:gnubash" name="Shell Scripting" />
+            <Skill icon="simple-icons:python" name="Python" />
+            <Skill icon="simple-icons:php" name="PHP" />
+          </div>
+          <div>
+            <p class="text-sm text-muted-foreground">Tools</p>
+            <Skill icon="simple-icons:git" name="Git" />
+            <Skill icon="simple-icons:github" name="Github" />
+          </div>
+          <div>
+            <p class="text-sm text-muted-foreground">Framework</p>
+            <Skill icon="simple-icons:django" name="Django" />
+            <Skill name="Rest API" />
+          </div>
         </div>
       </div>
     </section>

@@ -15,8 +15,7 @@ const { links, className } = Astro.props
 const getSocialLink = ({ href, label, icon }: SocialLink) => ({
   href: label === 'Email' ? `mailto:${href}` : href,
   ariaLabel: label,
-  iconName:
-  icon || 'lucide:message-circle-question',
+  iconName: icon || 'lucide:message-circle-question',
 })
 ---
 

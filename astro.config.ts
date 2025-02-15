@@ -18,8 +18,7 @@ import remarkToc from 'remark-toc'
 import sectionize from '@hbsnow/rehype-sectionize'
 
 import icon from 'astro-icon'
-import pagefind from "astro-pagefind";
-
+import pagefind from 'astro-pagefind'
 
 // https://astro.build/config
 export default defineConfig({

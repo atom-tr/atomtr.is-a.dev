@@ -20,8 +20,8 @@ astro-erudite is an opinionated, no-frills static blogging template built with [
 
 Below are some fantastic examples of websites based on this template. If you wish to add your site to this list, open a pull request!
 
-| Site | Author | Description/Features | Source |
-|------|--------|----------------------|--------|
+| Site                                 | Author                             | Description/Features                                                                         | Source                                     |
+| ------------------------------------ | ---------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | [enscribe.dev](https://enscribe.dev) | [@jktrn](https://github.com/jktrn) | Heavily modified bento-style homepage with client interactivity, with custom MDX components! | [→](https://github.com/jktrn/enscribe.dev) |
 
 ## Features
@@ -166,15 +166,15 @@ draft: false
 
 The blog post schema is defined as follows:
 
-| Field         | Type (Zod)      | Requirements                                                                                                                                                                      | Required |
-| ------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `title`       | `string`        | Must be ≤60 characters.                                                                                                                                                           | Yes      |
-| `description` | `string`        | Must be ≤155 characters.                                                                                                                                                          | Yes      |
-| `date`        | `coerce.date()` | Must be in `YYYY-MM-DD` format.                                                                                                                                                   | Yes      |
-| `image`       | `image()`       | Must be exactly 1200px &times; 630px.                                                                                                                                             | Optional |
-| `tags`        | `string[]`      | Preferably use kebab-case for these.                                                                                                                                              | Optional |
+| Field         | Type (Zod)      | Requirements                                                                                                                                                                    | Required |
+| ------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `title`       | `string`        | Must be ≤60 characters.                                                                                                                                                         | Yes      |
+| `description` | `string`        | Must be ≤155 characters.                                                                                                                                                        | Yes      |
+| `date`        | `coerce.date()` | Must be in `YYYY-MM-DD` format.                                                                                                                                                 | Yes      |
+| `image`       | `image()`       | Must be exactly 1200px &times; 630px.                                                                                                                                           | Optional |
+| `tags`        | `string[]`      | Preferably use kebab-case for these.                                                                                                                                            | Optional |
 | `authors`     | `string[]`      | If the author has a profile, use the id associated with their Markdown file in `src/content/authors/` (e.g. if their file is named `jane-doe.md`, use `jane-doe` in the array). | Optional |
-| `draft`       | `boolean`       | Defaults to `false` if not provided.                                                                                                                                              | Optional |
+| `draft`       | `boolean`       | Defaults to `false` if not provided.                                                                                                                                            | Optional |
 
 ### Authors
 

@@ -1,5 +1,5 @@
 ---
-import Search from "astro-pagefind/components/Search";
+import Search from 'astro-pagefind/components/Search'
 ---
 
 <aside data-pagefind-ignore>
@@ -31,66 +31,66 @@ import Search from "astro-pagefind/components/Search";
 </aside>
 
 <script is:inline>
-  const magnifyingGlass = document.getElementById("magnifying-glass");
-  const backdrop = document.getElementById("backdrop");
+  const magnifyingGlass = document.getElementById('magnifying-glass')
+  const backdrop = document.getElementById('backdrop')
 
   function openPagefind() {
-    const searchDiv = document.getElementById("search");
-    const search = searchDiv.querySelector("input");
+    const searchDiv = document.getElementById('search')
+    const search = searchDiv.querySelector('input')
     setTimeout(() => {
-      search.focus();
-    }, 0);
-    backdrop?.classList.remove("invisible");
-    backdrop?.classList.add("visible");
+      search.focus()
+    }, 0)
+    backdrop?.classList.remove('invisible')
+    backdrop?.classList.add('visible')
   }
 
   function closePagefind() {
-    const search = document.getElementById("search");
-    search.value = "";
-    backdrop?.classList.remove("visible");
-    backdrop?.classList.add("invisible");
+    const search = document.getElementById('search')
+    search.value = ''
+    backdrop?.classList.remove('visible')
+    backdrop?.classList.add('invisible')
   }
 
   // open pagefind
-  magnifyingGlass?.addEventListener("click", () => {
-    openPagefind();
-  });
+  magnifyingGlass?.addEventListener('click', () => {
+    openPagefind()
+  })
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "/") {
-      e.preventDefault();
-      openPagefind();
-    } else if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-      e.preventDefault();
-      openPagefind();
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/') {
+      e.preventDefault()
+      openPagefind()
+    } else if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault()
+      openPagefind()
     }
-  });
+  })
 
   // close pagefind
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closePagefind();
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closePagefind()
     }
-  });
+  })
 
   // close pagefind when searched result(link) clicked
-  document.addEventListener("click", (event) => {
-    if (event.target.classList.contains("pagefind-ui__result-link")) {
-      closePagefind();
+  document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('pagefind-ui__result-link')) {
+      closePagefind()
     }
-  });
+  })
 
-  backdrop?.addEventListener("click", (event) => {
-    if (!event.target.closest("#pagefind-container")) {
-      closePagefind();
+  backdrop?.addEventListener('click', (event) => {
+    if (!event.target.closest('#pagefind-container')) {
+      closePagefind()
     }
-  });
+  })
 
   // prevent form submission
-  const form = document.getElementById("form");
-  form?.addEventListener("submit", (event) => {
-    event.preventDefault();
-  });
+  const form = document.getElementById('form')
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault()
+  })
 </script>
 
 <style is:global>
@@ -98,7 +98,7 @@ import Search from "astro-pagefind/components/Search";
     --pagefind-ui-scale: 0.75;
     --pagefind-ui-border-width: 1px;
     --pagefind-ui-border-radius: 3px;
-    --pagefind-ui-font: "Geist", sans-serif;
+    --pagefind-ui-font: 'Geist', sans-serif;
     --pagefind-ui-primary: #3d3d3d;
     --pagefind-ui-text: #3d3d3d;
     --pagefind-ui-background: #ffffff;

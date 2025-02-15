@@ -2,20 +2,20 @@
 import BlogCard from '@/components/BlogCard.astro'
 import Container from '@/components/Container.astro'
 import Link from '@/components/Link.astro'
+import SocialIcons from '@/components/SocialIcons.astro'
 import AvatarComponent from '@/components/ui/avatar'
 import { buttonVariants } from '@/components/ui/button'
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardFooter
 } from '@/components/ui/card'
-import { SITE, ABOUT, SOCIAL_LINKS } from '@/consts'
+import { ABOUT, SITE, SOCIAL_LINKS } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
 import { getCollection } from 'astro:content'
-import SocialIcons from '@/components/SocialIcons.astro'
 
 const blog = (await getCollection('blog'))
   .filter((post) => !post.data.draft)
@@ -28,18 +28,19 @@ const blog = (await getCollection('blog'))
     <section>
       <Card>
         <CardHeader>
-          <div class=" flex items-center space-x-4">
+          <div class="flex items-center space-x-4">
             <AvatarComponent
               client:load
               src={ABOUT.avatar}
               alt={`Avatar of ${ABOUT.name}`}
-              className=
-                'size-16 rounded-md transition-shadow duration-300'
+              className="size-16 rounded-md transition-shadow duration-300"
             />
             <div class="flex-1 space-y-1">
               <CardTitle className="text-3xl">{ABOUT.name}</CardTitle>
-              <CardDescription>{ABOUT.real_name} &bull; {ABOUT.pronouns}</CardDescription>
-          </div>
+              <CardDescription
+                >{ABOUT.real_name} &bull; {ABOUT.pronouns}</CardDescription
+              >
+            </div>
           </div>
         </CardHeader>
         <CardContent>
@@ -49,18 +50,20 @@ const blog = (await getCollection('blog'))
             Administrator, Developer, and DevOps
           </p>
           <a
-          href="/about"
-          class='group text-muted-foreground text-sm inline-block transition-colors duration-300 ease-in-out underline decoration-muted-foreground underline-offset-[3px] hover:decoration-foreground text-foreground'
-        >
-          More about me <span
-            class="transition-transform group-hover:translate-x-1"
-            >&rarr;</span
+            href="/about"
+            class="group inline-block text-sm text-foreground text-muted-foreground underline decoration-muted-foreground underline-offset-[3px] transition-colors duration-300 ease-in-out hover:decoration-foreground"
           >
-        </a>
+            More about me <span
+              class="transition-transform group-hover:translate-x-1"
+              >&rarr;</span
+            >
+          </a>
         </CardContent>
         <CardFooter>
-        <SocialIcons links={SOCIAL_LINKS.filter(link => link.label !== 'RSS')} />
-      </CardFooter>
+          <SocialIcons
+            links={SOCIAL_LINKS.filter((link) => link.label !== 'RSS')}
+          />
+        </CardFooter>
       </Card>
     </section>
     <section class="flex flex-col gap-y-4">

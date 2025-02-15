@@ -3,8 +3,8 @@ name: 'Digipost API'
 description: 'Developed REST API for the company’s existing Digipost service'
 tags: ['Backend Developer', 'System Architect']
 image: '../../../../public/static/1200x630.png'
-link: "https://digipostapi.netnam.vn"
-date: "03/18/2024"
+link: 'https://digipostapi.netnam.vn'
+date: '03/18/2024'
 ---
 
 Developed REST API for the company’s existing Digipost service.
