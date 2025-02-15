@@ -19,10 +19,13 @@ import sectionize from '@hbsnow/rehype-sectionize'
 
 import icon from 'astro-icon'
 import pagefind from 'astro-pagefind'
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://astro-erudite.vercel.app',
+  site: 'https://atomtr.link',
+  output: 'server',
+  adapter: cloudflare(),
   integrations: [
     tailwind({
       applyBaseStyles: false,
