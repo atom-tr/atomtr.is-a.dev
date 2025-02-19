@@ -47,7 +47,7 @@ export const SOCIAL_LINKS: Link[] = [
     icon: 'lucide:github',
   },
   {
-    href: 'https://instagram.com/rt.mota',
+    href: 'https://instagram.com/thtr.view',
     label: 'Instagram',
     icon: 'lucide:instagram',
   },
