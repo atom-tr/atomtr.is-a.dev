@@ -25,7 +25,26 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   site: 'https://atomtr.link',
   output: 'server',
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+      configPath: "wrangler.toml",
+    },
+    routes: {
+      extend: {
+        exclude: [{ pattern: '/pagefind/*' }], // Use Starlight's pagefind search, which is generated statically at build time
+      }
+    },
+  }),
+  vite: {
+    resolve: {
+      // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
+      // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
+      alias: import.meta.env.PROD && {
+        "react-dom/server": "react-dom/server.edge",
+      },
+    },
+  },
   integrations: [
     tailwind({
       applyBaseStyles: false,
