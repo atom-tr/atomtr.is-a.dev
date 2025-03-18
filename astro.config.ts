@@ -19,7 +19,7 @@ import sectionize from '@hbsnow/rehype-sectionize'
 
 import icon from 'astro-icon'
 import pagefind from 'astro-pagefind'
-import cloudflare from '@astrojs/cloudflare';
+import cloudflare from '@astrojs/cloudflare'
 
 // https://astro.build/config
 export default defineConfig({
@@ -28,19 +28,21 @@ export default defineConfig({
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
-      configPath: "wrangler.toml",
+      configPath: 'wrangler.toml',
     },
     routes: {
       extend: {
         exclude: [{ pattern: '/pagefind/*' }], // Use Starlight's pagefind search, which is generated statically at build time
-      }
+      },
     },
   }),
   vite: {
     resolve: {
-      alias: import.meta.env.PROD ? {
-        "react-dom/server": "react-dom/server.edge",
-      } : undefined,
+      alias: import.meta.env.PROD
+        ? {
+            'react-dom/server': 'react-dom/server.edge',
+          }
+        : undefined,
     },
   },
   integrations: [
