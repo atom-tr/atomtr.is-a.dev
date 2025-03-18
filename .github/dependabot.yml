@@ -13,3 +13,4 @@ updates:
       - dependency-name: "tailwindcss"
       - dependency-name: "@types/react*"
     versioning-strategy: increase
+

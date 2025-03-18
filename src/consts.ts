@@ -7,6 +7,7 @@ export type Site = {
   NUM_POSTS_ON_HOMEPAGE: number
   POSTS_PER_PAGE: number
   SITEURL: string
+  GTM_ID: string
 }
 
 export type Link = {
@@ -22,7 +23,8 @@ export const SITE: Site = {
   EMAIL: 'thai.tr@hotmail.com',
   NUM_POSTS_ON_HOMEPAGE: 2,
   POSTS_PER_PAGE: 3,
-  SITEURL: 'https://atomtr.link',
+  SITEURL: 'https://atomtr.is-a.dev',
+  GTM_ID: 'G-CLT4Y7Z7X8',
 }
 
 export const NAV_LINKS: Link[] = [
@@ -60,7 +62,7 @@ export const SOCIAL_LINKS: Link[] = [
 ]
 
 export const GISCUS: GiscusProps = {
-  repo: 'atom-tr/astro-erudite',
+  repo: 'atom-tr/atomtr.is-a.dev',
   repoId: 'R_kgDONr4i-w',
   category: 'Show and tell',
   categoryId: 'DIC_kwDONr4i-84CmVfR',

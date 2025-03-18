@@ -20,10 +20,11 @@ import sectionize from '@hbsnow/rehype-sectionize'
 import icon from 'astro-icon'
 import pagefind from 'astro-pagefind'
 import cloudflare from '@astrojs/cloudflare'
+import partytown from '@astrojs/partytown'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://atomtr.link',
+  site: 'https://atomtr.is-a.dev',
   output: 'server',
   adapter: cloudflare({
     platformProxy: {
@@ -54,6 +55,11 @@ export default defineConfig({
     react(),
     icon(),
     pagefind(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push'],
+      },
+    }),
   ],
   markdown: {
     syntaxHighlight: false,
