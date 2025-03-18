@@ -34,7 +34,7 @@
     "@rehype-pretty/transformers": "^0.13.2",
     "@shikijs/transformers": "^3.2.1",
     "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
+    "@types/react-dom": "^19.0.4",
     "astro": "^5.5.2",
     "astro-icon": "^1.1.4",
     "astro-pagefind": "^1.8.3",
