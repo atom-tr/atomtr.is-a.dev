@@ -10,5 +10,7 @@ updates:
     schedule:
       interval: 'weekly'
     ignore:
-      - dependency-name: 'tailwindcss'
-      - dependency-name: '@types/react*'
+      - dependency-name: "tailwindcss"
+      - dependency-name: "@types/react*"
+    versioning-strategy: increase
+
