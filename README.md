@@ -40,3 +40,31 @@ This is a list of the various technologies used to build this template:
 | Syntax Highlighting | [Shiki](https://github.com/shikijs/shiki) + [rehype-pretty-code](https://rehype-pretty.pages.dev/) |
 | Graphics            | [Figma](https://www.figma.com/)                                                                    |
 | Deployment          | [Cloudflare](https://www.cloudflare.com/)                                                          |
+
+---
+
+## Licensing
+
+This project uses a multi-tiered licensing approach to differentiate between various components:
+
+### Original Template
+
+From the [Original Template License](LICENSE.md#original-template-license) section within the license:
+
+> This website is based on [astro-erudite](https://github.com/jktrn/astro-erudite), which was loosely derived from an MIT-licensed project, [trevortylerlee/astro-micro](https://github.com/trevortylerlee/astro-micro).
+
+The original MIT license is included in the full [LICENSE.md](LICENSE.md) file for compliance.
+
+### Website Code
+
+[![Code License]](LICENSE.md)
+
+All modifications and custom implementations made to the original template are proprietary and all rights are reserved. The code is publicly available for viewing and reference only. Modification, redistribution, or commercial use requires explicit permission from the copyright holder.
+
+From the [Website Code License](LICENSE.md#website-code-license) section:
+
+> This license applies specifically to the custom modifications made to the [jktrn/astro-erudite](https://github.com/jktrn/astro-erudite) template. It does not extend to the original template code, which remains under its original MIT license.
+
+From the [Disclaimer](LICENSE.md#disclaimer) section:
+
+> If you are interested in utilizing a similar website structure for your own means, please refer to the original template at [jktrn/astro-erudite](https://github.com/jktrn/astro-erudite), which is available under the MIT license and is free for use and modification.
