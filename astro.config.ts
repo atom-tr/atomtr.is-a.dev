@@ -45,6 +45,11 @@ export default defineConfig({
           }
         : undefined,
     },
+    // build: {
+    //   rollupOptions: {
+    //     external: ['sanitize-html'],
+    //   },
+    // },
   },
   integrations: [
     tailwind({
