@@ -22,6 +22,7 @@ const gtmScript = `
         dl = l != 'dataLayer' ? '&l=' + l : '';
     j.async = true;
     j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+    j.setAttribute('type', 'text/partytown');
     f.parentNode.insertBefore(j, f);
   })(window, document, 'script', 'dataLayer', '${SITE.GTM_ID}');
 `

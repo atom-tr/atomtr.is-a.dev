@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import sanitizeHtml from 'sanitize-html';
+import sanitizeHtml from 'sanitize-html'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -14,9 +14,24 @@ export function formatDate(date: Date) {
   }).format(date)
 }
 
-export function readingTime(html: string) {
-  const textOnly = sanitizeHtml(html, { allowedTags: [], allowedAttributes: {} });
-  const wordCount = textOnly.split(/\s+/).length
-  const readingTimeMinutes = (wordCount / 200 + 1).toFixed()
-  return `${readingTimeMinutes} min read`
+export function extractTextContent(html: string): string {
+  return sanitizeHtml(html, {
+    allowedTags: ['code'], // Keep <code> tags only
+    allowedAttributes: {}, // Remove all attributes
+    textFilter: (text) => {
+      let previous;
+      do {
+        previous = text;
+        text = text.replace(/<!--[\s\S]*?-->/g, '');
+      } while (text !== previous);
+      return text;
+    }, // Remove comments
+  });
+}
+
+export function readingTime(html: string): string {
+  const textOnly = extractTextContent(html);
+  const wordCount = textOnly.split(/\s+/).filter(Boolean).length;
+  const readingTimeMinutes = Math.max(1, Math.ceil(wordCount / 200));
+  return `${readingTimeMinutes} min read`;
 }
