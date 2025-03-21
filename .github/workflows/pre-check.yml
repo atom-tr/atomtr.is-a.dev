@@ -1,0 +1,38 @@
+name: Pre-Check Before Cloudflare Deploy
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  pre_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: npm install --omit=dev  # Install only production dependencies
+
+      - name: Run Tests
+        run: npm run astro check  # Run unit tests
+
+      - name: Build Project
+        run: npm run build  # Ensure build succeeds
+
+      - name: Create Check Run Status
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: "Pre-Check Before Cloudflare",
+              head_sha: context.payload.pull_request.head.sha,
+              status: "completed",
+              conclusion: "success",
+              output: {
+                title: "Pre-Check Passed",
+                summary: "All pre-checks completed successfully."
+              }
+            });
