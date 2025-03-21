@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Dependencies
-        run: npm install --omit=dev  # Install only production dependencies
+        run: npm ci --omit=dev  # Install only production dependencies
 
       - name: Run Tests
         run: npm run astro check  # Run unit tests
