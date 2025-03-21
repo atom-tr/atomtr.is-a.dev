@@ -18,7 +18,14 @@ export function extractTextContent(html: string): string {
   return sanitizeHtml(html, {
     allowedTags: ['code'], // Keep <code> tags only
     allowedAttributes: {}, // Remove all attributes
-    textFilter: (text) => text.replace(/<!--[\s\S]*?-->/g, ''), // Remove comments
+    textFilter: (text) => {
+      let previous;
+      do {
+        previous = text;
+        text = text.replace(/<!--[\s\S]*?-->/g, '');
+      } while (text !== previous);
+      return text;
+    }, // Remove comments
   });
 }
 
