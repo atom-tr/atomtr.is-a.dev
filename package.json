@@ -45,7 +45,7 @@
     "clsx": "^2.1.1",
     "cookie": ">=1.0.2",
     "esbuild": ">=0.25.1",
-    "lucide-react": "^0.479.0",
+    "lucide-react": "^0.513.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rehype-external-links": "^3.0.0",
