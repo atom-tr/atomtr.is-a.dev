@@ -1,5 +1,8 @@
 name: Auto Update package-lock.json for Dependabot
 
+permissions:
+  contents: write
+
 on:
   pull_request:
     branches: [main]  # or your default branch
