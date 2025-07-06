@@ -9,7 +9,7 @@ on:
 
 jobs:
   fix-lockfile:
-    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+    if: github.actor == 'dependabot' || github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
     runs-on: ubuntu-latest
 
     steps:
