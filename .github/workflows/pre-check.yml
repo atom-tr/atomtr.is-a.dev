@@ -1,8 +1,8 @@
 name: Pre-Check Before Cloudflare Deploy
 
-on: pull_request
-  # pull_request:
-  #   types: [opened, synchronize]
+on: 
+   pull_request:
+      types: [opened, synchronize]
 
 jobs:
   pre_check:
