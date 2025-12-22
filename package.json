@@ -34,7 +34,7 @@
     "@radix-ui/react-slot": "^1.2.4",
     "@rehype-pretty/transformers": "^0.13.2",
     "@shikijs/transformers": "^3.13.0",
-    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@types/sanitize-html": "^2.16.0",
