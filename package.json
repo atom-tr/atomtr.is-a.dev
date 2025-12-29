@@ -45,7 +45,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cookie": ">=1.0.2",
-    "esbuild": ">=0.25.6",
+    "esbuild": ">=0.27.2",
     "lucide-react": "^0.479.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
