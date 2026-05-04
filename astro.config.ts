@@ -41,6 +41,14 @@ export default defineConfig({
     service: passthroughImageService(),
   },
   vite: {
+    ssr: {
+      external: ['sharp'],
+    },
+    build: {
+      rollupOptions: {
+        external: ['sharp'],
+      },
+    },
     resolve: {
       alias: import.meta.env.PROD
         ? {
