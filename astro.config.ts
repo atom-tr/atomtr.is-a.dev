@@ -8,7 +8,7 @@ import {
   transformerMetaHighlight,
   transformerNotationDiff,
 } from '@shikijs/transformers'
-import { defineConfig } from 'astro/config'
+import { defineConfig, passthroughImageService } from 'astro/config'
 import rehypeKatex from 'rehype-katex'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypePrettyCode from 'rehype-pretty-code'
@@ -37,6 +37,9 @@ export default defineConfig({
       },
     },
   }),
+  image: {
+    service: passthroughImageService(),
+  },
   vite: {
     resolve: {
       alias: import.meta.env.PROD
