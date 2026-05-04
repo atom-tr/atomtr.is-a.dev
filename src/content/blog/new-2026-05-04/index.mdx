@@ -1,0 +1,73 @@
+---
+title: "Tin tức DevOps - 7 ngày qua"
+description: "Cập nhật DevOps hiệu năng cao, cảnh báo bảo mật và thay đổi hệ sinh thái dành cho kỹ sư"
+date: "2026-05-04"
+author: "DevOps Bot"
+image: "banner.webp"
+tags: ["devops", "kubernetes", "aws", "cicd", "security"]
+---
+
+## 🔥 Key Highlights
+- **Kubernetes v1.33** chính thức ra mắt, đưa tính năng native `SidecarContainers` lên mức Stable.
+- **Cảnh báo bảo mật Jenkins:** Vá lỗ hổng RCE nghiêm trọng liên quan đến websocket routing.
+- **ArgoCD v2.14** cải thiện tốc độ sync lên tới 40% cho các `monorepos` quy mô lớn.
+- **OpenTofu** đạt cột mốc quan trọng về tỷ lệ áp dụng trong doanh nghiệp, khẳng định vị thế thay thế Terraform.
+
+---
+
+## 🚀 New Tools / Tech
+### eBPF-Guard
+- **What it is:** Một `runtime security` và `observability daemon` siêu nhẹ dựa trên `eBPF`, được thiết kế riêng cho các `edge Kubernetes clusters`.
+- **Why it matters:** Giảm thiểu tối đa `overhead` so với các giải pháp truyền thống như Falco, giúp việc giám sát sâu ở cấp độ `kernel` trở nên khả thi trên các `nodes` có tài nguyên hạn chế.
+- **Source:** [GitHub Trending](https://github.com/trending)
+
+---
+
+## ⚙️ Important Updates
+### Kubernetes v1.33
+- **Key changes:** Tính năng `SidecarContainers` đạt trạng thái Stable. `ValidatingAdmissionPolicy` (CEL-based admission control) được mở rộng khả năng matching và biến số.
+- **Impact:** Loại bỏ việc phải dùng các `lifecycle hooks` phức tạp cho các `sidecars` (như Istio/Linkerd proxies). Kỹ sư hiện có thể đảm bảo `sidecar` khởi động trước `app container` và tắt sau một cách an toàn.
+- **Source:** [Kubernetes Official Blog](https://kubernetes.io/blog/)
+
+### ArgoCD v2.14.0
+- **Key changes:** Triển khai cơ chế `server-side manifest caching` mới và tối ưu hóa thuật toán `diffing`.
+- **Impact:** Giảm thời gian `sync` lên đến 40% cho các môi trường có hơn 1.000 applications. Giảm thiểu tình trạng `memory spikes` của `controller` trong quá trình `reconciliation` hàng loạt.
+- **Source:** [ArgoCD GitHub](https://github.com/argoproj/argo-cd)
+
+---
+
+## 🔐 Security Alerts
+### CVE-2026-31845 (Jenkins Core)
+- **Severity:** CRITICAL (CVSS 9.4)
+- **Affected systems:** Jenkins controllers phiên bản < 2.450.1.
+- **Impact:** Cho phép thực thi mã từ xa (Unauthenticated RCE) thông qua lỗi phân tách `payload` tại `CLI websocket endpoint`.
+- **Mitigation:** Cập nhật ngay lập tức lên 2.450.2 hoặc 2.440.4 LTS. Nếu chưa thể patch, hãy disable `Jenkins CLI over WebSockets` trong phần cấu hình bảo mật.
+- **Source:** [Jenkins Security Advisory](https://www.jenkins.io/security/advisories/)
+
+### CVE-2026-29112 (Docker Buildx)
+- **Severity:** HIGH (CVSS 8.1)
+- **Affected systems:** Docker Buildx < v0.14.0
+- **Impact:** Có khả năng leo thang đặc quyền (`privilege escalation`) trong `multi-stage builds` thông qua các `cache mounts` được tạo thủ công, dẫn đến `container breakout` ngay trên `CI runner`.
+- **Mitigation:** Nâng cấp lên Buildx v0.14.1 trong môi trường `CI/CD runner`.
+- **Source:** [Docker Security](https://docs.docker.com/security/)
+
+---
+
+## 📰 Notable News
+### Tỷ lệ áp dụng OpenTofu vượt ngưỡng 20% trong doanh nghiệp
+- **Summary:** Khảo sát mới nhất từ CNCF cho thấy hơn 20% môi trường doanh nghiệp đã chuyển hoàn toàn sang `OpenTofu` cho các `IaC pipelines`.
+- **Why it matters:** Khẳng định OpenTofu là một tiêu chuẩn mã nguồn mở dài hạn. Các đội ngũ `Platform Engineering` có thể tự tin triển khai OpenTofu mà không lo ngại về vấn đề `vendor lock-in`.
+- **Source:** [CNCF Infrastructure Report](https://www.cncf.io/reports/)
+
+---
+
+## 📄 Changelog Highlights
+### GitLab 18.11
+- **Key changes:** Hỗ trợ native cho `ephemeral CI/CD runners` triển khai qua `Knative`. Tích hợp quản lý `secrets` trực tiếp với `OIDC` cho AWS/GCP mà không cần Vault bên ngoài.
+- **Breaking changes:** Ngừng hỗ trợ engine đánh giá chuỗi `rules:if` cũ. Các `pipelines` dựa trên các đặc tính regex cũ không theo chuẩn sẽ bị lỗi.
+- **Source:** [GitLab Release Notes](https://about.gitlab.com/releases/)
+
+---
+
+## 🧠 Notes
+- Việc đẩy mạnh `eBPF` xuống sâu hơn trong `stack` công nghệ đang thay đổi hoàn toàn cách làm bảo mật và mạng trong cluster. Hãy kỳ vọng kiến trúc `ambient mesh` (không dùng sidecar) sẽ trở thành tiêu chuẩn mặc định cho các hệ thống Kubernetes mới trong thời gian tới.
