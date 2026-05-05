@@ -68,3 +68,9 @@ From the [Website Code License](LICENSE.md#website-code-license) section:
 From the [Disclaimer](LICENSE.md#disclaimer) section:
 
 > If you are interested in utilizing a similar website structure for your own means, please refer to the original template at [jktrn/astro-erudite](https://github.com/jktrn/astro-erudite), which is available under the MIT license and is free for use and modification.
+
+```
+╭─────╮  Atom:
+│ ◠ ◡ ◠  Thanks!
+╰─────╯
+```
