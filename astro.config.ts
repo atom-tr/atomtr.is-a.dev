@@ -25,10 +25,11 @@ import partytown from '@astrojs/partytown'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://atomtr.is-a.dev',
-  output: 'static',
+  output: 'server',
   adapter: cloudflare({
-    imageService: 'cloudflare',
+    imageService: 'passthrough',
   }),
+
   // image: {
   //   service: passthroughImageService(),
   // },
