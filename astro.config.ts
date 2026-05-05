@@ -8,7 +8,7 @@ import {
   transformerMetaHighlight,
   transformerNotationDiff,
 } from '@shikijs/transformers'
-import { defineConfig, passthroughImageService } from 'astro/config'
+import { defineConfig } from 'astro/config'
 import rehypeKatex from 'rehype-katex'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypePrettyCode from 'rehype-pretty-code'
@@ -25,7 +25,7 @@ import partytown from '@astrojs/partytown'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://atomtr.is-a.dev',
-  output: 'server',
+  output: 'static',
   adapter: cloudflare({
     imageService: 'cloudflare',
   }),
