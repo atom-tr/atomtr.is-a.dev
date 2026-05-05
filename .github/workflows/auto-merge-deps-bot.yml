@@ -9,38 +9,51 @@ permissions:
   pull-requests: write
 
 jobs:
-          
   dependabot:
     runs-on: ubuntu-latest
-    if: ${{ contains(fromJson('["dependabot[bot]"]'), github.actor) }}
+    if: ${{ github.actor == 'dependabot[bot]' }}
 
     steps:
-      
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
-      - name: Install dependencies and update lockfile
-        run: npm install --package-lock-only
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Update lockfile
+        run: pnpm install --lockfile-only
 
       - name: Commit updated lockfile
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add package-lock.json
-          git diff --cached --quiet && echo "No changes" || (
-            git commit -m "chore: update package-lock.json after dependabot upgrade"
+          git add pnpm-lock.yaml
+          if git diff --cached --quiet; then
+            echo "No changes to lockfile"
+          else
+            git commit -m "chore: update pnpm-lock.yaml after dependabot upgrade"
             git push
-          )
-            
+          fi
+
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --rebase "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
