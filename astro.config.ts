@@ -27,19 +27,11 @@ export default defineConfig({
   site: 'https://atomtr.is-a.dev',
   output: 'server',
   adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-      configPath: 'wrangler.toml',
-    },
-    routes: {
-      extend: {
-        exclude: [{ pattern: '/pagefind/*' }], // Use Starlight's pagefind search, which is generated statically at build time
-      },
-    },
+    imageService: 'cloudflare',
   }),
-  image: {
-    service: passthroughImageService(),
-  },
+  // image: {
+  //   service: passthroughImageService(),
+  // },
   vite: {
     ssr: {
       external: ['sharp'],
