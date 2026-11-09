@@ -5,10 +5,16 @@ import { isSubpost } from "@/lib/utils"
 export const pageTitle = (title: string) => `${title} | ${SITE.title}`
 
 export async function getPosts(): Promise<CollectionEntry<"archive">[]> {
-  const posts = await getCollection("archive", ({ data }) => !data.draft)
+  const posts = await getCollection(
+    "archive",
+    ({ data }: CollectionEntry<"archive">) => !data.draft,
+  )
   return posts
-    .filter((post) => !isSubpost(post.id))
-    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    .filter((post: CollectionEntry<"archive">) => !isSubpost(post.id))
+    .sort(
+      (a: CollectionEntry<"archive">, b: CollectionEntry<"archive">) =>
+        b.data.date.getTime() - a.data.date.getTime(),
+    )
 }
 
 export async function getSubposts(): Promise<
@@ -16,10 +22,11 @@ export async function getSubposts(): Promise<
 > {
   const posts = await getCollection(
     "archive",
-    ({ id, data }) => !data.draft && id.split("/").length === 2,
+    ({ id, data }: CollectionEntry<"archive">) =>
+      !data.draft && id.split("/").length === 2,
   )
   posts.sort(
-    (a, b) =>
+    (a: CollectionEntry<"archive">, b: CollectionEntry<"archive">) =>
       (a.data.order ?? Infinity) - (b.data.order ?? Infinity) ||
       a.data.date.getTime() - b.data.date.getTime(),
   )
