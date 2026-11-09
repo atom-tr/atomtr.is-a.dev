@@ -1,95 +1,136 @@
 ---
-import Breadcrumbs from '@/components/Breadcrumbs.astro'
-import Container from '@/components/Container.astro'
-import ProjectCard from '@/components/ProjectCard.astro'
-import Skill from '@/components/Skill.astro'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { SITE } from '@/consts'
-import Layout from '@/layouts/Layout.astro'
-// import { Separator } from '@/components/ui/separator'
-import { getCollection } from 'astro:content'
-
-// Fetch data server-side
-const projects = await getCollection('projects')
+import MetaPage from "@/components/MetaPage.astro"
+import Layout from "@/layouts/Layout.astro"
+import { SITE } from "@/consts"
 ---
 
-<Layout title="About" description={SITE.DESCRIPTION}>
-  <Container class="flex flex-col gap-y-6">
-    <Breadcrumbs items={[{ label: 'About', icon: 'lucide:info' }]} />
+<Layout crumbs={[{ label: "About", href: "/about" }]}>
+  <MetaPage
+    slot="head"
+    title="About"
+    description="About Thai Tran (atomtr) - DevOps Engineer & Developer"
+  />
 
-    <section>
-      <div class="min-w-full">
-        <h1 class="mb-4 text-3xl font-bold">Some more about me</h1>
-        <p class="animate prose prose-neutral mb-8 dark:prose-invert">
-          {SITE.TITLE}, a developer with a passion for automating everything..
+  <article class="about-container">
+    <header>
+      <h1>About Me</h1>
+      <p class="subtitle">Thai Tran &bull; DevOps Engineer &amp; Developer</p>
+    </header>
+
+    <prose-content>
+      <section>
+        <h2>Bio</h2>
+        <p>
+          I am a DevOps Engineer and Developer with 5+ years of experience in
+          system administration, infrastructure automation, and software
+          engineering. I specialize in cloud-native platforms, Kubernetes, CI/CD
+          pipelines, and Python/Bash scripting.
+        </p>
+      </section>
+
+      <section>
+        <h2>Experience &amp; Roles</h2>
+
+        <h3>DevOps Engineer</h3>
+        <p>
+          Automating the software delivery lifecycle from building code (CI) to
+          multi-environment deployment (CD). Managing Kubernetes workloads,
+          containerization, observability (Prometheus/Grafana/Loki), and
+          Infrastructure as Code (IaC) with Terraform, Terragrunt, and ArgoCD.
         </p>
 
-        <h2 class="mb-4 text-2xl font-semibold">Recent Projects</h2>
-        <div class="animate grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => <ProjectCard project={project} />)}
-        </div>
+        <h3>Software Developer &amp; System Administrator</h3>
+        <p>
+          Over 4 years of hands-on experience in backend development and systems
+          engineering. Focused on Python (Django/FastAPI/Celery), MySQL/Redis
+          databases, network management web tools, and Linux system internals.
+        </p>
+      </section>
 
-        <h2 class="mb-4 mt-5 text-2xl font-semibold">Roles</h2>
-        <div class="animate grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-3xl">Developer</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p class="mb-2 text-sm text-muted-foreground">
-                As an integral part of the System Administrator team, I worked
-                as a Python Developer for over 4 years, gaining a deep
-                understanding of core Python development. I have a thorough
-                grasp of Object-Oriented Programming and Design Patterns, with a
-                strong focus on scripting and developing web-based tools.
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-3xl">DevOps</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p class="mb-2 text-sm text-muted-foreground">
-                As a DevOps Engineer, I started with cultivating the DevOps
-                culture when we moved from Monolith to Agile Implementation.
-                Further automated the process end-to-end. Right from Building
-                the code (CI) to deploying it to different enviornment (CD).
-                Recently started creating Infrastructure with the help of code
-                (IAC).
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-        <h2 class="mb-5 mt-5 text-2xl font-semibold">Skills</h2>
-        <div class="animate grid gap-5 sm:grid-cols-1 lg:grid-cols-2">
-          <div>
-            <p class="mb-1 text-sm text-muted-foreground">
-              Programing Languages
-            </p>
-            <Skill icon="simple-icons:python" name="Python" />
-            <Skill icon="simple-icons:mysql" name="MySQL" />
-          </div>
-          <div>
-            <p class="mb-1 text-sm text-muted-foreground">
-              Scripting Languages
-            </p>
-            <Skill icon="simple-icons:gnubash" name="Shell Scripting" />
-            <Skill icon="simple-icons:python" name="Python" />
-            <Skill icon="simple-icons:php" name="PHP" />
-          </div>
-          <div>
-            <p class="mb-1 text-sm text-muted-foreground">Tools</p>
-            <Skill icon="simple-icons:git" name="Git" />
-            <Skill icon="simple-icons:github" name="Github" />
-          </div>
-          <div>
-            <p class="mb-1 text-sm text-muted-foreground">Framework</p>
-            <Skill icon="simple-icons:django" name="Django" />
-            <Skill name="Rest API" />
-          </div>
-        </div>
-      </div>
-    </section>
-  </Container>
+      <section>
+        <h2>Technical Skills</h2>
+        <ul>
+          <li>
+            <strong>Languages:</strong>
+            Python, Bash / Shell Scripting, SQL
+          </li>
+          <li>
+            <strong>DevOps &amp; Cloud:</strong>
+            Docker, Kubernetes, Linux, CI/CD, GitOps, Terraform
+          </li>
+          <li>
+            <strong>Observability &amp; Networking:</strong>
+            Prometheus, Grafana, Loki, Nginx, Cloudflare
+          </li>
+          <li>
+            <strong>Backend Frameworks:</strong>
+            Django, Django REST Framework, FastAPI, Celery, Redis
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Connect</h2>
+        <p>
+          Feel free to reach out via
+          <a href="mailto:thai.tr@hotmail.com">Email</a>
+          or check out my work on
+          <a
+            href="https://github.com/atom-tr"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >.
+        </p>
+      </section>
+    </prose-content>
+  </article>
 </Layout>
+
+<style>
+  header {
+    margin-block-end: var(--space-m);
+
+    h1 {
+      font-size: var(--step-3);
+      line-height: calc(var(--leading-offset) + 1em);
+      font-weight: var(--font-weight-medium);
+      margin-block-end: var(--space-3xs);
+    }
+
+    .subtitle {
+      color: var(--muted-foreground);
+      font-size: var(--step-0);
+    }
+  }
+
+  prose-content {
+    display: block;
+
+    section {
+      margin-block-end: var(--space-l);
+
+      h2 {
+        font-size: var(--step-1);
+        margin-block-end: var(--space-xs);
+        border-bottom: 1px solid var(--border);
+        padding-bottom: var(--space-3xs);
+      }
+
+      h3 {
+        font-size: var(--step-0);
+        margin-block-start: var(--space-s);
+        margin-block-end: var(--space-3xs);
+      }
+
+      ul {
+        margin-block-start: var(--space-2xs);
+        padding-inline-start: var(--space-m);
+
+        li {
+          margin-block-end: var(--space-3xs);
+        }
+      }
+    }
+  }
+</style>

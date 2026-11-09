@@ -1,0 +1,47 @@
+---
+import BlogCard from "@/components/BlogCard.astro"
+import MetaPage from "@/components/MetaPage.astro"
+import Layout from "@/layouts/Layout.astro"
+import { getPosts } from "@/lib/content"
+
+const posts = await getPosts()
+---
+
+<Layout>
+  <MetaPage slot="head" title="Archive" />
+  <header>
+    <h1>Personal Archive</h1>
+    <p>
+      A collection of technical notes, references, experiments, and engineering
+      records.
+    </p>
+  </header>
+  <ul>
+    {posts.map((post) => <BlogCard post={post} />)}
+  </ul>
+</Layout>
+
+<style>
+  header {
+    margin-block-end: var(--space-m);
+
+    h1 {
+      font-size: var(--step-2);
+      font-weight: var(--font-weight-medium);
+      color: var(--foreground);
+      margin-block-end: var(--space-3xs);
+    }
+
+    p {
+      color: var(--muted-foreground);
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    list-style: none;
+    padding: 0;
+  }
+</style>

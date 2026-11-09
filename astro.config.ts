@@ -1,112 +1,39 @@
-import { rehypeHeadingIds } from '@astrojs/markdown-remark'
-import mdx from '@astrojs/mdx'
-import react from '@astrojs/react'
-import sitemap from '@astrojs/sitemap'
-import tailwind from '@astrojs/tailwind'
-import { transformerCopyButton } from '@rehype-pretty/transformers'
+import { defineConfig } from "astro/config"
+import sitemap from "@astrojs/sitemap"
+import { satteri } from "@astrojs/markdown-satteri"
 import {
-  transformerMetaHighlight,
-  transformerNotationDiff,
-} from '@shikijs/transformers'
-import { defineConfig } from 'astro/config'
-import rehypeKatex from 'rehype-katex'
-import rehypeExternalLinks from 'rehype-external-links'
-import rehypePrettyCode from 'rehype-pretty-code'
-import remarkEmoji from 'remark-emoji'
-import remarkMath from 'remark-math'
-import remarkToc from 'remark-toc'
-import sectionize from '@hbsnow/rehype-sectionize'
+  blockExpressiveCode,
+  inlineExpressiveCode,
+} from "./src/lib/expressive-code"
+import { temmlMath } from "./src/lib/math"
+import { calloutDirective } from "./src/lib/callout"
+import { externalLinks } from "./src/lib/external-links"
+import { headingNamespace } from "./src/lib/heading-namespace"
+import { headingAnchors } from "./src/lib/heading-anchors"
 
-import icon from 'astro-icon'
-import pagefind from 'astro-pagefind'
-import cloudflare from '@astrojs/cloudflare'
-import partytown from '@astrojs/partytown'
-
-// https://astro.build/config
 export default defineConfig({
-  site: 'https://atomtr.is-a.dev',
-  output: 'static',
-  adapter: cloudflare({
-    imageService: 'cloudflare',
-  }),
-  // image: {
-  //   service: passthroughImageService(),
-  // },
-  vite: {
-    ssr: {
-      external: ['sharp'],
-    },
-    build: {
-      rollupOptions: {
-        external: ['sharp'],
-      },
-    },
-    resolve: {
-      alias: import.meta.env.PROD
-        ? {
-            'react-dom/server': 'react-dom/server.edge',
-          }
-        : undefined,
-    },
-    // build: {
-    //   rollupOptions: {
-    //     external: ['sanitize-html'],
-    //   },
-    // },
-  },
+  site: "https://atomtr.is-a.dev",
+  compressHTML: true,
+  prefetch: { prefetchAll: true },
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    sitemap(),
-    mdx(),
-    react(),
-    icon(),
-    pagefind(),
-    partytown({
-      config: {
-        forward: ['dataLayer.push'],
-      },
+    sitemap({
+      filter: (page) =>
+        !/\/archive\/[^/]+\/[^/]+\/?$/.test(page) &&
+        !/\/authors\/[^/]+\/?$/.test(page) &&
+        !page.includes("/tags/"),
     }),
   ],
   markdown: {
     syntaxHighlight: false,
-    rehypePlugins: [
-      [
-        rehypeExternalLinks,
-        {
-          target: '_blank',
-          rel: ['nofollow', 'noreferrer', 'noopener'],
-        },
-      ],
-      rehypeHeadingIds,
-      rehypeKatex,
-      sectionize,
-      [
-        rehypePrettyCode,
-        {
-          theme: {
-            light: 'github-light-high-contrast',
-            dark: 'github-dark-high-contrast',
-          },
-          transformers: [
-            transformerNotationDiff(),
-            transformerMetaHighlight(),
-            transformerCopyButton({
-              visibility: 'hover',
-              feedbackDuration: 1000,
-            }),
-          ],
-        },
-      ],
-    ],
-    remarkPlugins: [remarkToc, remarkMath, remarkEmoji],
-  },
-  server: {
-    port: 1234,
-    host: true,
-  },
-  devToolbar: {
-    enabled: false,
+    processor: satteri({
+      features: { directive: true, math: true },
+      mdastPlugins: [calloutDirective, inlineExpressiveCode, temmlMath] as any,
+      hastPlugins: [
+        externalLinks,
+        blockExpressiveCode,
+        headingNamespace,
+        headingAnchors,
+      ] as any,
+    }) as any,
   },
 })
