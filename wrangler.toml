@@ -2,7 +2,3 @@ name = "astro-erudite"
 compatibility_flags = ["nodejs_compat"]
 compatibility_date = "2024-09-23"
 pages_build_output_dir = "dist"
-
-[assets]
-directory = "dist"
-binding = "LOCAL_ASSETS"
