@@ -1,76 +1,26 @@
-import type { GiscusProps } from '@giscus/react'
+import type { SvgComponent } from "astro/types"
+import Email from "@/assets/icons/email.svg"
+import GitHub from "@/assets/icons/github.svg"
+import Globe from "@/assets/icons/globe.svg"
 
-export type Site = {
-  TITLE: string
-  DESCRIPTION: string
-  EMAIL: string
-  NUM_POSTS_ON_HOMEPAGE: number
-  POSTS_PER_PAGE: number
-  SITEURL: string
-  GTM_ID: string
-}
+export const SITE = {
+  title: "atomtr",
+  description:
+    "Thai Tran - DevOps Engineer personal archive, notes & projects.",
+  locale: "en-US",
+  dir: "ltr",
+  defaultPageImage: "/static/opengraph-image.png",
+  defaultPostImage: "/static/1200x630.png",
+} as const
 
-export type Link = {
-  href: string
-  label: string
-  icon?: string
-}
-
-export const SITE: Site = {
-  TITLE: 'atomtr',
-  DESCRIPTION:
-    'A developer / DevOps engineer with a passion for automating everything.',
-  EMAIL: 'thai.tr@hotmail.com',
-  NUM_POSTS_ON_HOMEPAGE: 2,
-  POSTS_PER_PAGE: 3,
-  SITEURL: 'https://atomtr.is-a.dev',
-  GTM_ID: 'G-CLT4Y7Z7X8',
-}
-
-export const NAV_LINKS: Link[] = [
-  { href: '/blog', label: 'blog' },
-  // { href: '/authors', label: 'authors' },
-  { href: '/about', label: 'about' },
-  { href: '/tags', label: 'tags' },
+export const NAVIGATION = [
+  { href: "/archive", label: "Archive" },
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
 ]
 
-export const ABOUT = {
-  name: 'atom-tr',
-  real_name: 'Thai Tran',
-  avatar: 'https://avatars.githubusercontent.com/u/65351520?v=4',
-  pronouns: 'he/him',
-}
-
-export const SOCIAL_LINKS: Link[] = [
-  { href: 'thai.tr@hotmail.com', label: 'Email', icon: 'lucide:mail' },
-  {
-    href: 'https://github.com/atom-tr',
-    label: 'Github',
-    icon: 'lucide:github',
-  },
-  {
-    href: 'https://instagram.com/thtr.view',
-    label: 'Instagram',
-    icon: 'lucide:instagram',
-  },
-  {
-    href: 'https://dev.to/atomtr',
-    label: 'Dev.to',
-    icon: 'simple-icons:devdotto',
-  },
-  { href: '/rss.xml', label: 'RSS', icon: 'lucide:rss' },
+export const SOCIALS: { href: string; label: string; icon: SvgComponent }[] = [
+  { href: "https://github.com/atom-tr", label: "GitHub", icon: GitHub },
+  { href: "mailto:thai.tr@hotmail.com", label: "Email", icon: Email },
+  { href: "https://atomtr.link", label: "Website", icon: Globe },
 ]
-
-export const GISCUS: GiscusProps = {
-  repo: 'atom-tr/atomtr.is-a.dev',
-  repoId: 'R_kgDONr4i-w',
-  category: 'Show and tell',
-  categoryId: 'DIC_kwDONr4i-84CmVfR',
-  mapping: 'title',
-  reactionsEnabled: '1',
-  emitMetadata: '0',
-  inputPosition: 'top',
-  theme: 'preferred_color_scheme',
-  lang: 'vi',
-  loading: 'lazy',
-}

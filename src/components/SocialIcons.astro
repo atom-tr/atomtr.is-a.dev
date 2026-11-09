@@ -1,41 +1,45 @@
 ---
-import Link from '@/components/Link.astro'
-import { buttonVariants } from '@/components/ui/button'
-import type { Link as SocialLink } from '@/consts'
-import { cn } from '@/lib/utils'
-import { Icon } from 'astro-icon/components'
+import type { SvgComponent } from "astro/types"
 
-interface Props {
-  links: SocialLink[]
-  className?: string
-}
+type Props = { links: { href: string; label: string; icon: SvgComponent }[] }
 
-const { links, className } = Astro.props
-
-const getSocialLink = ({ href, label, icon }: SocialLink) => ({
-  href: label === 'Email' ? `mailto:${href}` : href,
-  ariaLabel: label,
-  iconName: icon || 'lucide:message-circle-question',
-})
+const { links } = Astro.props
 ---
 
-<ul class={cn('not-prose flex flex-wrap gap-2', className)} role="list">
-  {
-    links.map((link) => {
-      const { href, ariaLabel, iconName } = getSocialLink(link)
-      return (
-        <li>
-          <Link
-            href={href}
-            aria-label={ariaLabel}
-            title={ariaLabel}
-            class={buttonVariants({ variant: 'outline', size: 'icon' })}
-            external
-          >
-            <Icon name={iconName} class="size-4" />
-          </Link>
-        </li>
-      )
-    })
-  }
+<ul>
+  {links.map(({ href, label, icon: Icon }) => (
+    <li>
+      <a
+        href={href}
+        data-icon-button
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={label}
+        title={label}
+      >
+        <Icon aria-hidden="true" />
+      </a>
+    </li>
+  ))}
 </ul>
+
+<style>
+  ul {
+    display: flex;
+    margin-inline: -0.5rem;
+
+    li a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--foreground);
+      }
+
+      svg {
+        width: 1.125rem;
+        height: 1.125rem;
+      }
+    }
+  }
+</style>

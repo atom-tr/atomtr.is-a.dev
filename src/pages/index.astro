@@ -1,93 +1,124 @@
 ---
-import BlogCard from '@/components/BlogCard.astro'
-import Container from '@/components/Container.astro'
-import Link from '@/components/Link.astro'
-import SocialIcons from '@/components/SocialIcons.astro'
-import AvatarComponent from '@/components/ui/avatar'
-import { buttonVariants } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { ABOUT, SITE, SOCIAL_LINKS } from '@/consts'
-import Layout from '@/layouts/Layout.astro'
-import { getCollection } from 'astro:content'
+import BlogCard from "@/components/BlogCard.astro"
+import MetaPage from "@/components/MetaPage.astro"
+import Layout from "@/layouts/Layout.astro"
+import { getPosts } from "@/lib/content"
+import { SITE } from "@/consts"
 
-const blog = (await getCollection('blog'))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE)
+const recentPosts = (await getPosts()).slice(0, 3)
 ---
 
-<Layout title="Home" description={SITE.DESCRIPTION}>
-  <Container class="flex flex-col gap-y-6">
-    <section>
-      <Card>
-        <CardHeader>
-          <div class="flex items-center space-x-4">
-            <AvatarComponent
-              client:load
-              src={ABOUT.avatar}
-              alt={`Avatar of ${ABOUT.name}`}
-              className="size-16 rounded-md transition-shadow duration-300"
-            />
-            <div class="flex-1 space-y-1">
-              <CardTitle className="text-3xl">{ABOUT.name}</CardTitle>
-              <CardDescription
-                >{ABOUT.real_name} &bull; {ABOUT.pronouns}</CardDescription
-              >
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <p class="mb-2 text-sm text-muted-foreground">
-            a developer with a passion for automating everything. 5 years of
-            experience working at a company in roles such as System
-            Administrator, Developer, and DevOps
-          </p>
-          <a
-            href="/about"
-            class="group inline-block text-sm text-foreground text-muted-foreground underline decoration-muted-foreground underline-offset-[3px] transition-colors duration-300 ease-in-out hover:decoration-foreground"
-          >
-            More about me <span
-              class="transition-transform group-hover:translate-x-1"
-              >&rarr;</span
-            >
-          </a>
-        </CardContent>
-        <CardFooter>
-          <SocialIcons
-            links={SOCIAL_LINKS.filter((link) => link.label !== 'RSS')}
-          />
-        </CardFooter>
-      </Card>
-    </section>
-    <section class="flex flex-col gap-y-4">
-      <h2 class="text-2xl font-bold">Latest posts</h2>
-      <ul class="not-prose flex flex-col gap-y-4">
-        {
-          blog.map((post) => (
-            <li>
-              <BlogCard entry={post} />
-            </li>
-          ))
-        }
+<Layout>
+  <MetaPage slot="head" />
+
+  <section class="hero-section">
+    <h1>Thai Tran <span class="handle">(@atomtr)</span></h1>
+    <p class="role">DevOps Engineer &amp; Systems Developer</p>
+    <p class="bio">
+      Welcome to my personal archive. This site is a minimalist repository of my
+      engineering notes, architecture decisions, infrastructure experiments, and
+      software projects.
+    </p>
+
+    <div class="quick-links">
+      <a href="/archive" class="cta-link">&rarr; Explore Archive</a>
+      <a href="/projects" class="cta-link">&rarr; View Projects</a>
+      <a href="/about" class="cta-link">&rarr; About Me</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="recent-section">
+    <h2>Recent Archive Entries</h2>
+    {recentPosts.length > 0 ? (
+      <ul>
+        {recentPosts.map((post) => (
+          <BlogCard post={post} />
+        ))}
       </ul>
-      <div class="flex justify-center">
-        <Link
-          href="/blog"
-          class={buttonVariants({ variant: 'ghost' }) + ' group'}
-        >
-          See all posts <span
-            class="ml-1.5 transition-transform group-hover:translate-x-1"
-            >&rarr;</span
-          >
-        </Link>
-      </div>
-    </section>
-  </Container>
+    ) : (
+      <p class="empty-note">No entries recorded yet.</p>
+    )}
+  </section>
 </Layout>
+
+<style>
+  .hero-section {
+    display: block;
+    margin-block-end: var(--space-l);
+
+    h1 {
+      font-size: var(--step-3);
+      line-height: calc(var(--leading-offset) + 1em);
+      font-weight: var(--font-weight-medium);
+      color: var(--foreground);
+      margin-block-end: var(--space-3xs);
+
+      .handle {
+        font-size: var(--step-0);
+        color: var(--muted-foreground);
+        font-weight: normal;
+      }
+    }
+
+    .role {
+      font-size: var(--step-0);
+      color: var(--muted-foreground);
+      margin-block-end: var(--space-s);
+    }
+
+    .bio {
+      font-size: var(--step-0);
+      line-height: 1.6;
+      color: var(--foreground);
+      max-inline-size: 55ch;
+      margin-block-end: var(--space-m);
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-m);
+
+      .cta-link {
+        font-weight: var(--font-weight-medium);
+        color: var(--foreground);
+        text-decoration-line: underline;
+        text-underline-offset: 3px;
+
+        &:hover {
+          color: var(--muted-foreground);
+        }
+      }
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-block: var(--space-l);
+  }
+
+  .recent-section {
+    h2 {
+      font-size: var(--step-1);
+      font-weight: var(--font-weight-medium);
+      color: var(--foreground);
+      margin-block-end: var(--space-m);
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-m);
+      list-style: none;
+      padding: 0;
+    }
+
+    .empty-note {
+      color: var(--muted-foreground);
+      font-style: italic;
+    }
+  }
+</style>
