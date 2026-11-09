@@ -1,114 +1,156 @@
 ---
 import BlogCard from "@/components/BlogCard.astro"
 import MetaPage from "@/components/MetaPage.astro"
+import SocialIcons from "@/components/SocialIcons.astro"
 import Layout from "@/layouts/Layout.astro"
 import { getPosts } from "@/lib/content"
-import { SITE } from "@/consts"
+import { ABOUT, SITE, SOCIALS } from "@/consts"
 
-const recentPosts = (await getPosts()).slice(0, 3)
+const posts = (await getPosts()).slice(0, 3)
 ---
 
 <Layout>
   <MetaPage slot="head" />
 
-  <section class="hero-section">
-    <h1>Thai Tran <span class="handle">(@atomtr)</span></h1>
-    <p class="role">DevOps Engineer &amp; Systems Developer</p>
-    <p class="bio">
-      Welcome to my personal archive. This site is a minimalist repository of my
-      engineering notes, architecture decisions, infrastructure experiments, and
-      software projects.
-    </p>
+  <section class="profile-card">
+    <div class="card-header">
+      <img
+        src={ABOUT.avatar}
+        alt={`Avatar of ${ABOUT.name}`}
+        class="avatar"
+        width="64"
+        height="64"
+      >
+      <div class="header-text">
+        <h1 class="profile-name">{ABOUT.name}</h1>
+        <p class="profile-meta">{ABOUT.real_name} &bull; {ABOUT.pronouns}</p>
+      </div>
+    </div>
 
-    <div class="quick-links">
-      <a href="/archive" class="cta-link">&rarr; Explore Archive</a>
-      <a href="/projects" class="cta-link">&rarr; View Projects</a>
-      <a href="/about" class="cta-link">&rarr; About Me</a>
+    <div class="card-content">
+      <p class="bio-text">{ABOUT.bio}</p>
+      <a href="/about" class="more-link">
+        More about me <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+
+    <div class="card-footer">
+      <SocialIcons links={SOCIALS} />
     </div>
   </section>
 
-  <hr>
+  <section class="latest-section">
+    <div class="section-header">
+      <h2>Recent Archive entries</h2>
+    </div>
 
-  <section class="recent-section">
-    <h2>Recent Archive Entries</h2>
-    {recentPosts.length > 0 ? (
-      <ul>
-        {recentPosts.map((post) => (
-          <BlogCard post={post} />
-        ))}
-      </ul>
-    ) : (
-      <p class="empty-note">No entries recorded yet.</p>
-    )}
+    <ul class="posts-list">
+      {posts.map((post) => <BlogCard post={post} />)}
+    </ul>
+
+    <div class="all-link-container">
+      <a href="/archive" class="see-all-button">
+        See all archive entries <span class="arrow">&rarr;</span>
+      </a>
+    </div>
   </section>
 </Layout>
 
 <style>
-  .hero-section {
-    display: block;
+  .profile-card {
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: var(--space-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
     margin-block-end: var(--space-l);
 
-    h1 {
-      font-size: var(--step-3);
-      line-height: calc(var(--leading-offset) + 1em);
-      font-weight: var(--font-weight-medium);
-      color: var(--foreground);
-      margin-block-end: var(--space-3xs);
-
-      .handle {
-        font-size: var(--step-0);
-        color: var(--muted-foreground);
-        font-weight: normal;
-      }
-    }
-
-    .role {
-      font-size: var(--step-0);
-      color: var(--muted-foreground);
-      margin-block-end: var(--space-s);
-    }
-
-    .bio {
-      font-size: var(--step-0);
-      line-height: 1.6;
-      color: var(--foreground);
-      max-inline-size: 55ch;
-      margin-block-end: var(--space-m);
-    }
-
-    .quick-links {
+    .card-header {
       display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-m);
+      align-items: center;
+      gap: 1rem;
 
-      .cta-link {
-        font-weight: var(--font-weight-medium);
-        color: var(--foreground);
-        text-decoration-line: underline;
-        text-underline-offset: 3px;
+      .avatar {
+        inline-size: 4rem;
+        block-size: 4rem;
+        border-radius: 0.375rem;
+        object-fit: cover;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
 
-        &:hover {
+      .header-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+
+        .profile-name {
+          font-size: var(--step-2);
+          line-height: calc(var(--leading-offset) + 1em);
+          font-weight: var(--font-weight-medium);
+          color: var(--foreground);
+        }
+
+        .profile-meta {
+          font-size: var(--step--1);
           color: var(--muted-foreground);
         }
       }
     }
-  }
 
-  hr {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin-block: var(--space-l);
-  }
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
 
-  .recent-section {
-    h2 {
-      font-size: var(--step-1);
-      font-weight: var(--font-weight-medium);
-      color: var(--foreground);
-      margin-block-end: var(--space-m);
+      .bio-text {
+        font-size: var(--step-0);
+        color: var(--muted-foreground);
+        line-height: 1.5;
+      }
+
+      .more-link {
+        font-size: var(--step--1);
+        color: var(--foreground);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        width: fit-content;
+
+        &:hover {
+          color: var(--muted-foreground);
+        }
+
+        .arrow {
+          display: inline-block;
+          transition: transform 0.2s ease-in-out;
+        }
+
+        &:hover .arrow {
+          transform: translateX(3px);
+        }
+      }
     }
 
-    ul {
+    .card-footer {
+      border-top: 1px solid var(--border);
+      padding-top: var(--space-xs);
+    }
+  }
+
+  .latest-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+
+    .section-header h2 {
+      font-size: var(--step-1);
+      line-height: calc(var(--leading-offset) + 1em);
+      font-weight: var(--font-weight-medium);
+      color: var(--foreground);
+    }
+
+    .posts-list {
       display: flex;
       flex-direction: column;
       gap: var(--space-m);
@@ -116,9 +158,38 @@ const recentPosts = (await getPosts()).slice(0, 3)
       padding: 0;
     }
 
-    .empty-note {
-      color: var(--muted-foreground);
-      font-style: italic;
+    .all-link-container {
+      display: flex;
+      justify-content: center;
+      margin-block-start: var(--space-xs);
+
+      .see-all-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.5rem 1rem;
+        font-size: var(--step-0);
+        color: var(--foreground);
+        border: 1px solid var(--border);
+        border-radius: 0.375rem;
+        text-decoration: none;
+        transition:
+          background-color 0.2s ease,
+          border-color 0.2s ease;
+
+        &:hover {
+          background-color: color-mix(in oklab, var(--muted) 40%, transparent);
+          border-color: var(--muted-foreground);
+        }
+
+        .arrow {
+          transition: transform 0.2s ease-in-out;
+        }
+
+        &:hover .arrow {
+          transform: translateX(3px);
+        }
+      }
     }
   }
 </style>

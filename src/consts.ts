@@ -19,6 +19,14 @@ export const NAVIGATION = [
   { href: "/about", label: "About" },
 ]
 
+export const ABOUT = {
+  name: "atomtr",
+  real_name: "Thai Tran",
+  avatar: "https://avatars.githubusercontent.com/u/65351520?v=4",
+  pronouns: "he/him",
+  bio: "a developer with a passion for automating everything. 5 years of experience working at a company in roles such as System Administrator, Developer, and DevOps",
+}
+
 export const SOCIALS: { href: string; label: string; icon: SvgComponent }[] = [
   { href: "https://github.com/atom-tr", label: "GitHub", icon: GitHub },
   { href: "mailto:thai.tr@hotmail.com", label: "Email", icon: Email },
