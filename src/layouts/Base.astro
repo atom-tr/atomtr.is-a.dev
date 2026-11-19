@@ -1,0 +1,33 @@
+---
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/700.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/700.css';
+import '@fontsource/montserrat/800.css';
+import '../styles/global.css';
+
+interface Props { title?: string; description?: string }
+const {
+  title = 'atomtr — Thai Tran, DevOps / Platform Engineer',
+  description = 'Thai Tran (atomtr) — DevOps / Platform Engineer: AWS, Kubernetes, Terraform, GitOps, observability. Automating everything; built to take a hit and keep going.',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0c0e12" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="canonical" href={Astro.url} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
