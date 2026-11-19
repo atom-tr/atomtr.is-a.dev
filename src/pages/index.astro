@@ -1,195 +1,180 @@
 ---
-import BlogCard from "@/components/BlogCard.astro"
-import MetaPage from "@/components/MetaPage.astro"
-import SocialIcons from "@/components/SocialIcons.astro"
-import Layout from "@/layouts/Layout.astro"
-import { getPosts } from "@/lib/content"
-import { ABOUT, SITE, SOCIALS } from "@/consts"
-
-const posts = (await getPosts()).slice(0, 3)
+import Base from '../layouts/Base.astro';
+import logo from '../assets/atomtr-inline.svg?raw';
+import wordmark from '../assets/atomtr-wordmark.svg?raw';
 ---
+<Base>
+  <canvas id="ascii" aria-hidden="true"></canvas>
+  <div class="scan" aria-hidden="true"></div>
 
-<Layout>
-  <MetaPage slot="head" />
+  <header class="nav">
+    <a class="brand" href="#hero" aria-label="atomtr home"><span class="wordmark" set:html={wordmark} /></a>
+    <nav aria-label="Main">
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
 
-  <section class="profile-card">
-    <div class="card-header">
-      <img
-        src={ABOUT.avatar}
-        alt={`Avatar of ${ABOUT.name}`}
-        class="avatar"
-        width="64"
-        height="64"
-      >
-      <div class="header-text">
-        <h1 class="profile-name">{ABOUT.name}</h1>
-        <p class="profile-meta">{ABOUT.real_name} &bull; {ABOUT.pronouns}</p>
+  <main>
+    <section id="hero" class="hero">
+      <p class="eyebrow" id="boot">&gt; ./atomtr --boot</p>
+      <h1 id="title">atomtr</h1>
+      <p class="role">DevOps / Platform Engineer</p>
+      <p class="tagline" id="tagline">Built to take a hit <br />and keep going<span class="cursor">_</span></p>
+      <p class="cta">
+        <a class="btn" href="#projects">[ fight card ]</a>
+        <a class="btn alt" href="#contact">[ say hi ]</a>
+      </p>
+      <p class="hint">move to bend the orbits · hold to charge</p>
+    </section>
+
+    <section class="quote" aria-label="Quote">
+      <blockquote data-reveal>
+        <p data-scramble>"If you want to learn to swim, jump into the water."</p>
+        <footer>&mdash; Bruce Lee</footer>
+      </blockquote>
+    </section>
+
+    <section id="about" class="panel">
+      <h2 data-scramble>/about</h2>
+      <div class="grid2">
+        <div data-reveal>
+          <p>
+            Hi, I'm <strong>Thai Tran</strong> &mdash; <strong>atomtr</strong> online. A DevOps &amp;
+            platform engineer with 5+ years building and running AWS infrastructure, Kubernetes and
+            Linux/Docker environments: Terraform IaC, GitOps CI/CD, FinOps and observability, on top
+            of a solid Python backend background.
+          </p>
+          <p>
+            The name comes from Atom, the underdog sparring robot in Real Steel &mdash; small,
+            battered, never done &mdash; and from the atom itself: the smallest thing with the most
+            energy inside.
+          </p>
+        </div>
+        <dl class="stats" data-reveal>
+          <div><dt>name</dt><dd>Thai Tran</dd></div>
+          <div><dt>role</dt><dd>DevOps / Platform</dd></div>
+          <div><dt>exp</dt><dd>5+ years</dd></div>
+          <div><dt>base</dt><dd>Ho Chi Minh City</dd></div>
+        </dl>
       </div>
-    </div>
+      <ul class="skills" data-reveal>
+        <li><b>cloud</b> AWS · Kubernetes · Docker · Rancher · Helm · Karpenter</li>
+        <li><b>iac/ci</b> Terraform · Terragrunt · Atlantis · GitLab CI · ArgoCD · Jenkins · GitHub Actions · Ansible</li>
+        <li><b>observe</b> Grafana · Loki · Mimir · Tempo · Alloy · OpenTelemetry · Alertmanager · Zabbix</li>
+        <li><b>security</b> GitLab SAST · Secret Detection · IAM/RBAC · SSO · Cloudflare WAF · External Secrets</li>
+        <li><b>backend</b> Python · Django · Flask · Celery · PostgreSQL · MySQL · Redis · RabbitMQ · Elasticsearch</li>
+        <li><b>systems</b> Linux · Bash · Networking · DNS · Cloudflare · Nginx</li>
+        <li><b>edu</b> PTIT, Electronics &amp; Telecom Eng. · CCNA / CCNP Advanced Routing (2019)</li>
+      </ul>
+    </section>
 
-    <div class="card-content">
-      <p class="bio-text">{ABOUT.bio}</p>
-      <a href="/about" class="more-link">
-        More about me <span class="arrow">&rarr;</span>
-      </a>
-    </div>
+    <section id="experience" class="panel">
+      <h2 data-scramble>/experience</h2>
+      <ol class="card-list">
+        <li data-reveal>
+          <span class="round">NOW</span>
+          <div>
+            <h3>DevOps &amp; Systems Engineer</h3>
+            <p class="stack">Sunpower Technologies · 04.2025 &ndash; present</p>
+            <ul class="bul">
+              <li>Migrated on-prem VMware and EC2 workloads to 8 EKS clusters (Ireland, Singapore, Tokyo) managed with Rancher; GitOps delivery with ArgoCD.</li>
+              <li>Terraform/Terragrunt for AWS and Cloudflare, with one central Atlantis across 6 AWS accounts and per-repo IAM roles.</li>
+              <li>Moved a large SVN monorepo to self-hosted GitLab with full history and LDAP, via a Python fast-export/import pipeline; modernized build pipelines on GitLab CI.</li>
+              <li>Deployed the LGTM observability stack on S3 across clusters and VMs; cut costs with Karpenter and added SAST and secret detection to merge requests.</li>
+            </ul>
+          </div>
+        </li>
+        <li data-reveal>
+          <span class="round">2024</span>
+          <div>
+            <h3>DevOps Team Lead</h3>
+            <p class="stack">Netnam Corporation · Ho Chi Minh City</p>
+            <ul class="bul">
+              <li>Built and led a DevOps team developing internal tools, CI/CD and monitoring.</li>
+              <li>Gathered requirements across departments; mentored and trained the team.</li>
+            </ul>
+          </div>
+        </li>
+        <li data-reveal>
+          <span class="round">2020</span>
+          <div>
+            <h3>System Administrator</h3>
+            <p class="stack">Netnam Corporation · 2020 &ndash; 2024</p>
+            <ul class="bul">
+              <li>Ran virtualization, DNS, email and Azure 365 systems; built internal tools and automation workflows.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
 
-    <div class="card-footer">
-      <SocialIcons links={SOCIALS} />
-    </div>
-  </section>
+    <section id="projects" class="panel">
+      <h2 data-scramble>/projects</h2>
+      <ol class="card-list">
+        <li data-reveal>
+          <span class="round">R1</span>
+          <div>
+            <h3>Network Webtool</h3>
+            <p>Web tool that schedules and automates repetitive network-team tasks, with API connectivity to manage and configure network devices. 04.2021 &ndash; 01.2024.</p>
+            <p class="stack">Django · MariaDB · Redis · Celery · Docker</p>
+          </div>
+        </li>
+        <li data-reveal>
+          <span class="round">R2</span>
+          <div>
+            <h3>PowerDNS Admin</h3>
+            <p>Customized and deployed a DNS management system, with scripts for automated migration and data synchronization. 2022.</p>
+            <p class="stack">Flask · MariaDB · Docker · PowerDNS</p>
+          </div>
+        </li>
+        <li data-reveal>
+          <span class="round">R3</span>
+          <div>
+            <h3>Digipost API</h3>
+            <p>REST API for an email marketing service, with optimized queue management and real-time open/click tracking logged in Elasticsearch. 2022.</p>
+            <p class="stack">Django · MariaDB · Redis · Celery · Elasticsearch</p>
+          </div>
+        </li>
+      </ol>
+    </section>
 
-  <section class="latest-section">
-    <div class="section-header">
-      <h2>Recent Archive entries</h2>
-    </div>
+    <section id="contact" class="panel">
+      <h2 data-scramble>/contact</h2>
+      <div class="cardwrap" data-reveal>
+        <article class="bizcard" aria-label="atomtr business card">
+          <p class="xinchao" aria-label="Xin chao">XIN CHAO</p>
+          <div class="logo big" set:html={logo} />
+          <p class="job">System/DevOps Engineer</p>
+          <h3 class="who">Thai Tran</h3>
+          <svg class="eyes" viewBox="0 0 40 18" width="40" height="18" aria-hidden="true">
+            <g class="eye">
+              <ellipse cx="10" cy="9" rx="8" ry="7.5" fill="none" stroke="currentColor" stroke-width="1.6" />
+              <circle class="pupil" cx="10" cy="9" r="3.6" fill="currentColor" />
+            </g>
+            <g class="eye">
+              <ellipse cx="30" cy="9" rx="8" ry="7.5" fill="none" stroke="currentColor" stroke-width="1.6" />
+              <circle class="pupil" cx="30" cy="9" r="3.6" fill="currentColor" />
+            </g>
+          </svg>
+          <p class="lines">
+            <a href="mailto:me@atomtr.dev">me@atomtr.dev</a>
+            <a href="https://atomtr.dev">https://atomtr.dev</a>
+          </p>
+        </article>
+        <p class="after">
+          <a class="btn" href="/atomtr.vcf" download>[ save contact ]</a>
+          <a class="btn alt" href="https://github.com/atom-tr" target="_blank" rel="noopener noreferrer">[ github ]</a>
+        </p>
+      </div>
+    </section>
+  </main>
 
-    <ul class="posts-list">
-      {posts.map((post) => <BlogCard post={post} />)}
-    </ul>
+  <footer class="foot"><p>© 2026 Thai Tran (atomtr) · built with Astro, Three.js &amp; GSAP · drawn in characters</p></footer>
 
-    <div class="all-link-container">
-      <a href="/archive" class="see-all-button">
-        See all archive entries <span class="arrow">&rarr;</span>
-      </a>
-    </div>
-  </section>
-</Layout>
-
-<style>
-  .profile-card {
-    background-color: var(--background);
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    padding: var(--space-m);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-s);
-    margin-block-end: var(--space-l);
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-
-      .avatar {
-        inline-size: 4rem;
-        block-size: 4rem;
-        border-radius: 0.375rem;
-        object-fit: cover;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-
-      .header-text {
-        display: flex;
-        flex-direction: column;
-        gap: 0.125rem;
-
-        .profile-name {
-          font-size: var(--step-2);
-          line-height: calc(var(--leading-offset) + 1em);
-          font-weight: var(--font-weight-medium);
-          color: var(--foreground);
-        }
-
-        .profile-meta {
-          font-size: var(--step--1);
-          color: var(--muted-foreground);
-        }
-      }
-    }
-
-    .card-content {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-
-      .bio-text {
-        font-size: var(--step-0);
-        color: var(--muted-foreground);
-        line-height: 1.5;
-      }
-
-      .more-link {
-        font-size: var(--step--1);
-        color: var(--foreground);
-        text-decoration: underline;
-        text-underline-offset: 3px;
-        width: fit-content;
-
-        &:hover {
-          color: var(--muted-foreground);
-        }
-
-        .arrow {
-          display: inline-block;
-          transition: transform 0.2s ease-in-out;
-        }
-
-        &:hover .arrow {
-          transform: translateX(3px);
-        }
-      }
-    }
-
-    .card-footer {
-      border-top: 1px solid var(--border);
-      padding-top: var(--space-xs);
-    }
-  }
-
-  .latest-section {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-m);
-
-    .section-header h2 {
-      font-size: var(--step-1);
-      line-height: calc(var(--leading-offset) + 1em);
-      font-weight: var(--font-weight-medium);
-      color: var(--foreground);
-    }
-
-    .posts-list {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-m);
-      list-style: none;
-      padding: 0;
-    }
-
-    .all-link-container {
-      display: flex;
-      justify-content: center;
-      margin-block-start: var(--space-xs);
-
-      .see-all-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.375rem;
-        padding: 0.5rem 1rem;
-        font-size: var(--step-0);
-        color: var(--foreground);
-        border: 1px solid var(--border);
-        border-radius: 0.375rem;
-        text-decoration: none;
-        transition:
-          background-color 0.2s ease,
-          border-color 0.2s ease;
-
-        &:hover {
-          background-color: color-mix(in oklab, var(--muted) 40%, transparent);
-          border-color: var(--muted-foreground);
-        }
-
-        .arrow {
-          transition: transform 0.2s ease-in-out;
-        }
-
-        &:hover .arrow {
-          transform: translateX(3px);
-        }
-      }
-    }
-  }
-</style>
+  <script>
+    import '../scripts/main';
+  </script>
+</Base>
